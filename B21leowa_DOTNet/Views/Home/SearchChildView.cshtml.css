@@ -1,0 +1,9 @@
+﻿table {
+    border: 1px solid black;
+    border-spacing: 0;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 1rem;
+}

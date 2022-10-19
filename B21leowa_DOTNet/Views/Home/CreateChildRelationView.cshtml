@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Create child relation";
+
+}
+
+<h1>Relations between the children</h1>
+<form method="post" action="@Url.Action("InsertChildRelation", "Home")">
+    <div>
+        <label>Child 1</label>
+        <select name="namePNR1">
+            <option value=""></option>
+            @foreach (var row in ViewBag.barnTable.Rows)
+            {
+                string namePNR1 = @row[1] + "," + @row[0];
+                <option value="@namePNR1">@namePNR1</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Child 2</label>
+        <select name="namePNR2">
+            <option value=""></option>
+            @foreach (var row in ViewBag.barnTable.Rows)
+            {
+                string namePNR2 = @row[1] + "," + @row[0];
+
+                <option value="@namePNR2">@namePNR2</option>
+            }
+        </select>
+    </div>    
+   
+    <div>
+        <label>Whats their relation</label> <input type="text" name="typeOfRelation"/>   
+    </div>
+    <input type="submit" value="Add Relation"/>
+</form>

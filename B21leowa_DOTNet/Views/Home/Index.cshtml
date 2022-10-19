@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div>
+    <h1>All children</h1>
+    <table>
+        <tr>
+            @foreach (var dataColumn in ViewBag.barnTable.Columns)
+            {
+                <th>@dataColumn.ColumnName</th>
+            }
+            <th>Delete Child</th>
+        </tr>
+        @foreach (var barnRow in ViewBag.barnTable.Rows)
+        {
+            <tr>
+                @for (int i = 0; i < ViewBag.barnTable.Columns.Count; i++)
+                {
+                    <td>@barnRow[i]</td>
+                }
+                <td>
+                    <form method="post" action="@Url.Action("DeleteChild", "Home")">
+                        <input type="hidden" value="@barnRow[0]" name="PNR" />
+                        <input type="hidden" value="@barnRow[1]" name="name" />
+                        <input type="submit" value="Delete Child" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<a asp-controller="Home" asp-action="CreateChildView">Create Child</a>
+
+<div>
+    <h3>Search on children</h3>
+    <form method="post" action="@Url.Action("SearchChildView", "Home")">
+        <label>Name: <input type="text" name="name" /></label>
+        <input type="submit" value="Search"/>
+    </form>
+</div>
+
+
+<div>
+    <h1>Childrens wish lists</h1>
+    <table>
+        <tr>
+            @foreach (var wishListColumn in ViewBag.wishListTable.Columns)
+            {
+                <th>@wishListColumn.ColumnName</th>
+            }
+            <th>Delete Child Wish</th>
+        </tr>
+        @foreach (var wishListRow in ViewBag.wishListTable.Rows)
+        {
+            <tr>
+                @for (int i = 0; i < ViewBag.wishListTable.Columns.Count; i++)
+                {
+                    <td>@wishListRow[i]</td>
+                }
+                <td>
+                    <form method="post" action="@Url.Action("DeleteWish", "Home")">
+                        <input type="hidden" value="@wishListRow[0]" name="createdDate" />
+                        <input type="hidden" value="@wishListRow[3]" name="PNR" />
+                        <input type="submit" value="Delete Child Wish" />
+                    </form>
+
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>
+
+<a asp-controller="Home" asp-action="CreateWishListView">Create Wish</a>
+
+<div class="childRelation">
+    <h1>Child relation</h1>
+    <table >
+        <tr>
+            @foreach (var childRelationColumn in ViewBag.childRelationTable.Columns)
+            {
+                <th>@childRelationColumn.ColumnName</th>
+            }
+            <th>Delete Child Relation</th>
+        </tr>
+
+        @foreach (var childRelationRow in ViewBag.childRelationTable.Rows)
+        {
+            <tr>
+                @for (int i = 0; i < ViewBag.childRelationTable.Columns.Count; i++)
+                {
+                    <td>@childRelationRow[i]</td>
+                }
+                <td>
+                    <form method="post" action="@Url.Action("DeleteChildRelation", "Home")">
+                        <input type="hidden" value="@childRelationRow[0]" name="PNR1" />
+                        <input type="hidden" value="@childRelationRow[1]" name="name1" />
+                        <input type="hidden" value="@childRelationRow[2]" name="PNR2" />
+                        <input type="hidden" value="@childRelationRow[3]" name="name2" />
+                        <input type="submit" value="Delete Child Relation" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <a asp-controller="Home" asp-action="CreateChildRelationView">Create Child Relation</a>
+</div>

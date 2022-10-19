@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Create Wish list";
+
+}
+
+<h1>Create a wish</h1>
+<form method="post" action="@Url.Action("InsertWish", "Home")">
+    <div>
+        <label>Pick yourself</label>
+        <select name="namePNR">
+            <option value=""></option>
+            @foreach (var row in ViewBag.barnTable.Rows)
+            {
+                string namePNR1 = @row[1] + ", " + @row[0];
+                string totalValue = @row[1] + "," + @row[0] + "," + row[2];
+                <option value="@totalValue">@namePNR1</option>
+            }
+        </select>
+        
+    </div>
+    <div>
+        <label>Description <input type="text" name="description" /></label>
+    </div>
+    <input type="submit" value="Create wish" />
+</form>
